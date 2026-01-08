@@ -14,7 +14,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        // WebView + YouTube generally needs a full ABI set; keep defaults.
+        // Enable vector drawable support for API < 21
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
