@@ -1,6 +1,7 @@
 package com.example.youtubetvlite
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.KeyEvent
@@ -68,10 +69,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun hideSystemUi() {
-        val controller = window.insetsController
-        if (controller != null) {
-            controller.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
-            controller.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val controller = window.insetsController
+            if (controller != null) {
+                controller.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
+                controller.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            }
         } else {
             @Suppress("DEPRECATION")
             window.decorView.systemUiVisibility =
