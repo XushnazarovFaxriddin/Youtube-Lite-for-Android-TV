@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">YouTube TV Lite</string>
+
+    <string name="menu_home">Home (youtube.com/tv)</string>
+    <string name="menu_back">Back</string>
+    <string name="menu_forward">Forward</string>
+    <string name="menu_reload">Reload</string>
+    <string name="menu_clear">Clear cookies</string>
+    <string name="menu_toggle_ua">Toggle User-Agent (Desktop/Mobile)</string>
+    <string name="menu_remote_assist">Remote assist: %1$s</string>
+    <string name="menu_close">Close menu</string>
+</resources>
