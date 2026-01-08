@@ -1,9 +1,17 @@
-name: Build Android TV debug APK
+name: Build & Release Android TV APK
 
 on:
   workflow_dispatch:
   push:
     branches: [ "main", "master" ]
+    paths:
+      - 'app/**'
+      - 'build.gradle.kts'
+      - 'settings.gradle.kts'
+      - '.github/workflows/**'
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -22,13 +30,63 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
       - name: Build debug APK
+        run: ./gradlew :app:assembleDebug
+
+      - name: Get version info
+        id: version
         run: |
-          chmod +x ./gradlew
-          ./gradlew :app:assembleDebug
+          VERSION_NAME=$(grep -oP 'versionName\s*=\s*"\K[^"]+' app/build.gradle.kts || echo "1.0.0")
+          VERSION_CODE=$(grep -oP 'versionCode\s*=\s*\K\d+' app/build.gradle.kts || echo "1")
+          BUILD_DATE=$(date +'%Y%m%d-%H%M')
+          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
+          echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
+          echo "build_date=$BUILD_DATE" >> $GITHUB_OUTPUT
+
+      - name: Rename APK
+        run: |
+          mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/YouTube-Lite-TV-v${{ steps.version.outputs.version_name }}.apk
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: YouTubeTVLite-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          name: YouTube-Lite-TV-v${{ steps.version.outputs.version_name }}
+          path: app/build/outputs/apk/debug/YouTube-Lite-TV-v${{ steps.version.outputs.version_name }}.apk
+
+      - name: Create/Update Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.version.outputs.version_name }}
+          name: YouTube Lite TV v${{ steps.version.outputs.version_name }}
+          body: |
+            ## YouTube Lite for Android TV
+
+            **Version:** ${{ steps.version.outputs.version_name }} (Build ${{ steps.version.outputs.version_code }})
+            **Build Date:** ${{ steps.version.outputs.build_date }}
+
+            ### Installation
+            1. Download the APK file below
+            2. Transfer to your Android TV device
+            3. Install and enjoy!
+
+            ### What's New
+            - Back button navigation fixed for video playback
+            - Improved remote control support
+            - Professional TV-optimized interface
+
+            ### Requirements
+            - Android 5.0+ (API 21)
+            - Android TV or TV Box device
+
+            ---
+            *Alternative: If this doesn't work on your device, try [SmartTube](https://github.com/yuliskov/SmartTube)*
+          files: |
+            app/build/outputs/apk/debug/YouTube-Lite-TV-v${{ steps.version.outputs.version_name }}.apk
+          draft: false
+          prerelease: false
+          generate_release_notes: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
