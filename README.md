@@ -5,246 +5,259 @@
 ![Platform](https://img.shields.io/badge/Platform-Android%20TV-green)
 ![Min SDK](https://img.shields.io/badge/Min%20SDK-21%20(Android%205.0)-blue)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
+[![Release](https://img.shields.io/github/v/release/XushnazarovFaxriddin/Youtube-Lite-for-Android-TV?include_prereleases)](../../releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/XushnazarovFaxriddin/Youtube-Lite-for-Android-TV/total)](../../releases)
 
-**YouTube endi qo'llab-quvvatlamaydigan Android TV Box qurilmalari uchun eng yaxshi yechim!**
+**The best solution for Android TV Box devices where YouTube is no longer supported!**
 
-[Download APK](#-yuklab-olish) | [Features](#-xususiyatlar) | [Installation](#-o'rnatish) | [FAQ](#-savol-javob)
+[<img src="https://img.shields.io/badge/Download-APK-red?style=for-the-badge&logo=android" alt="Download APK" height="40">](../../releases/latest)
 
 </div>
 
 ---
 
-## Nima uchun bu ilova kerak?
+## Why This App?
 
-Google YouTube ilovasini eski Android TV Box qurilmalarda qo'llab-quvvatlashni to'xtatgan. Bu holda sizda ikki variant bor:
+Google has discontinued YouTube app support on older Android TV Box devices. If you're affected, you have two options:
 
-| Variant | Tavsif |
-|---------|--------|
-| **YouTube Lite** (bu ilova) | Yengil, tez, resurslarni kam sarflaydigan WebView ilova. Eski va zaif qurilmalar uchun ideal. |
-| **[SmartTube](https://github.com/yuliskov/SmartTube)** | To'liq funksiyali ilova reklamasiz. Kuchli qurilmalar uchun tavsiya etiladi. |
+| Option | Description |
+|--------|-------------|
+| **YouTube Lite** (this app) | Lightweight, fast, resource-efficient WebView app. Ideal for older and low-spec devices. |
+| **[SmartTube](https://github.com/yuliskov/SmartTube)** | Full-featured app with no ads. Recommended for powerful devices. |
 
-> **Tavsiya:** Avval YouTube Lite ni sinab ko'ring. Agar qurilmangiz sekin ishlasa yoki muammolar bo'lsa, [SmartTube](https://github.com/yuliskov/SmartTube) ni ishlatib ko'ring.
-
----
-
-## Yuklab olish
-
-### Oxirgi versiya
-
-| Fayl | Tavsif |
-|------|--------|
-| [**youtube-lite-tv.apk**](../../releases/latest/download/app-debug.apk) | Debug APK - barcha qurilmalarda ishlaydi |
-
-**Yoki GitHub Releases sahifasidan yuklab oling:**
-- [All Releases](../../releases)
-
-### GitHub Actions orqali
-
-Har bir commit dan so'ng avtomatik build bo'ladi:
-1. [Actions](../../actions) sahifasiga o'ting
-2. Oxirgi muvaffaqiyatli workflow ni tanlang
-3. `Artifacts` bo'limidan `debug-apk` ni yuklab oling
+> **Recommendation:** Try YouTube Lite first. If your device runs slow or has issues, try [SmartTube](https://github.com/yuliskov/SmartTube) instead.
 
 ---
 
-## Xususiyatlar
+## Download
 
-### Asosiy imkoniyatlar
+### Latest Release
 
-- **YouTube TV interfeysi** - Pult bilan boshqarish uchun optimallashtirilgan
-- **Yuqori sifatli video** - 4K/8K gacha avtomatik sifat sozlash
-- **Yengil va tez** - WebView asosida, resurslarni kam sarflaydi
-- **To'liq ekran rejimi** - Immersive fullscreen qo'llab-quvvatlash
-- **Cookie va login** - Google hisobingiz bilan kiring
+[<img src="https://img.shields.io/badge/Download%20Latest%20APK-green?style=for-the-badge&logo=github" alt="Download" height="50">](../../releases/latest)
 
-### Pult boshqaruvi
+Or go directly to [**Releases Page**](../../releases) to see all versions.
 
-| Tugma | Funksiya |
-|-------|----------|
-| **DPAD (Yo'nalish)** | Navigatsiya |
-| **OK/Enter** | Tanlash |
-| **Back** | Orqaga qaytish |
-| **Menu/Settings** | Menyu ochish |
-| **OK (uzoq bosish)** | Menyu ochish |
+### Direct Link
 
-### Menyu funksiyalari
-
-- **Home** - Bosh sahifaga qaytish
-- **Back/Forward** - Navigatsiya tarixi
-- **Reload** - Sahifani yangilash
-- **Clear Cookies** - Cookie tozalash (qayta login uchun)
-- **Toggle UA** - User-Agent almashtirish (TV/Desktop)
-- **Remote Assist** - DPAD ni JavaScript ga yuborish rejimi
+| File | Description |
+|------|-------------|
+| [**YouTube-Lite-TV.apk**](../../releases/latest) | Latest stable release - works on all devices |
 
 ---
 
-## O'rnatish
+## Features
 
-### 1-usul: APK dan to'g'ridan-to'g'ri
+### Core Features
 
-1. APK faylni yuklab oling
-2. USB orqali TV Box ga ko'chiring
-3. Fayl menejeri orqali APK ni oching
-4. "Noma'lum manbalardan o'rnatish" ga ruxsat bering
-5. O'rnating va ishga tushiring
+- **YouTube TV Interface** - Optimized for remote control navigation
+- **High Quality Video** - Automatic quality up to 4K/8K
+- **Lightweight & Fast** - WebView-based, minimal resource usage
+- **Fullscreen Mode** - Immersive fullscreen support
+- **Google Account Login** - Sign in with your Google account
 
-### 2-usul: ADB orqali
+### Remote Control
+
+| Button | Function |
+|--------|----------|
+| **D-Pad (Arrows)** | Navigation |
+| **OK/Enter** | Select |
+| **Back** | Go back / Exit video |
+| **Menu/Settings** | Open menu |
+| **OK (long press)** | Open menu |
+
+### Menu Functions
+
+- **Home** - Return to home page
+- **Back/Forward** - Navigation history
+- **Reload** - Refresh page
+- **Clear Cookies** - Clear cookies (for re-login)
+- **Toggle UA** - Switch User-Agent (TV/Desktop)
+- **Remote Assist** - Send D-Pad as JavaScript events
+
+---
+
+## Installation
+
+### Method 1: Direct APK Install
+
+1. [Download the APK](../../releases/latest)
+2. Transfer to your TV Box via USB
+3. Open with a file manager
+4. Allow "Install from unknown sources"
+5. Install and launch
+
+### Method 2: ADB Install
 
 ```bash
-# ADB ulangan holda
-adb install youtube-lite-tv.apk
+# With ADB connected
+adb install YouTube-Lite-TV.apk
 ```
 
-### 3-usul: Downloader ilovasi
+### Method 3: Downloader App
 
-1. TV Box ga **Downloader** ilovasini o'rnating
-2. APK URL manzilini kiriting
-3. Yuklab oling va o'rnating
+1. Install **Downloader** app on your TV Box
+2. Enter the APK URL from releases page
+3. Download and install
 
 ---
 
-## Talablar
+## Requirements
 
-| Talab | Minimal | Tavsiya etilgan |
-|-------|---------|-----------------|
-| Android versiya | 5.0 (API 21) | 7.0+ |
+| Requirement | Minimum | Recommended |
+|-------------|---------|-------------|
+| Android Version | 5.0 (API 21) | 7.0+ |
 | RAM | 1 GB | 2 GB+ |
-| Internet | Talab qilinadi | Barqaror ulanish |
+| Internet | Required | Stable connection |
 
-**Qo'llab-quvvatlanadigan qurilmalar:**
-- Android TV Box (barcha brendlar)
-- Android TV (Sony, Philips, TCL, va h.k.)
-- Fire TV Stick (sideload orqali)
+**Supported Devices:**
+- Android TV Box (all brands)
+- Android TV (Sony, Philips, TCL, etc.)
+- Fire TV Stick (via sideload)
 - Mi Box / Mi TV Stick
 - NVIDIA Shield
-- Boshqa Android TV qurilmalar
+- Other Android TV devices
 
 ---
 
-## Muammolarni hal qilish
+## Troubleshooting
 
-### YouTube yuklanmayapti
+### YouTube Not Loading
 
-1. **Internetni tekshiring** - Wi-Fi yoki Ethernet ulanishini tekshiring
-2. **Cache tozalang** - Sozlamalar > Ilovalar > YouTube Lite > Cache tozalash
-3. **Cookie tozalang** - Ilova menyusidan "Clear Cookies" tugmasini bosing
+1. **Check internet** - Verify Wi-Fi or Ethernet connection
+2. **Clear cache** - Settings > Apps > YouTube Lite > Clear Cache
+3. **Clear cookies** - Use "Clear Cookies" from app menu
 
-### Pult ishlamayapti
+### Remote Not Working
 
-1. **Remote Assist** rejimini yoqing (menyudan)
-2. Ilovani qayta ishga tushiring
-3. Pult batareyalarini tekshiring
+1. Enable **Remote Assist** mode from menu
+2. Restart the app
+3. Check remote batteries
 
-### Video sekin yuklanmoqda
+### Slow Video Loading
 
-1. Internet tezligini tekshiring
-2. **Toggle UA** tugmasi orqali Desktop rejimiga o'ting
-3. Qurilmani qayta ishga tushiring
+1. Check internet speed
+2. Switch to Desktop mode via **Toggle UA**
+3. Restart your device
 
-### Login qilib bo'lmayapti
+### Can't Login
 
-1. "Clear Cookies" tugmasini bosing
-2. Qayta login qiling
-3. 2FA yoqilgan bo'lsa, TV kodni ishlatib ko'ring
-
----
-
-## Alternativa: SmartTube
-
-Agar YouTube Lite sizning qurilmangizda yaxshi ishlamasa yoki qo'shimcha funksiyalar kerak bo'lsa, **SmartTube** ni ishlatishni tavsiya etamiz:
-
-**SmartTube xususiyatlari:**
-- Reklamasiz YouTube
-- SponsorBlock integratsiyasi
-- 4K/8K HDR qo'llab-quvvatlash
-- Picture-in-Picture rejimi
-- Playback speed nazorati
-- Va ko'p boshqa funksiyalar
-
-**Yuklab olish:** [github.com/yuliskov/SmartTube](https://github.com/yuliskov/SmartTube)
-
-> **Eslatma:** SmartTube ko'proq resurs talab qiladi. Zaif qurilmalarda YouTube Lite afzalroq bo'lishi mumkin.
+1. Press "Clear Cookies"
+2. Try logging in again
+3. If 2FA enabled, use TV code method
 
 ---
 
-## Savol-Javob
+## Alternative: SmartTube
+
+If YouTube Lite doesn't work well on your device or you need more features, we recommend **SmartTube**:
+
+**SmartTube Features:**
+- Ad-free YouTube
+- SponsorBlock integration
+- 4K/8K HDR support
+- Picture-in-Picture mode
+- Playback speed control
+- And many more features
+
+**Download:** [github.com/yuliskov/SmartTube](https://github.com/yuliskov/SmartTube)
+
+> **Note:** SmartTube requires more resources. YouTube Lite may work better on low-spec devices.
+
+---
+
+## FAQ
 
 <details>
-<summary><b>Bu ilova xavfsizmi?</b></summary>
+<summary><b>Is this app safe?</b></summary>
 
-Ha. Ilova ochiq kodli va faqat YouTube.com/tv sahifasini ochadi. Hech qanday ma'lumot to'planmaydi yoki yuborilmaydi.
+Yes. The app is open source and only opens YouTube.com/tv. No data is collected or sent anywhere.
 </details>
 
 <details>
-<summary><b>Google hisobim xavfsizmi?</b></summary>
+<summary><b>Is my Google account safe?</b></summary>
 
-Ha. Login to'g'ridan-to'g'ri YouTube.com orqali amalga oshiriladi. Parolingiz faqat Google serverlariga yuboriladi.
+Yes. Login happens directly through YouTube.com. Your password is only sent to Google servers.
 </details>
 
 <details>
-<summary><b>Nima uchun ba'zi funksiyalar ishlamayapti?</b></summary>
+<summary><b>Why don't some features work?</b></summary>
 
-YouTube TV interfeysi cheklangan funksionallikka ega. To'liq funksiyalar uchun SmartTube ni sinab ko'ring.
+The YouTube TV interface has limited functionality. For full features, try SmartTube.
 </details>
 
 <details>
-<summary><b>Ilovani qanday yangilayman?</b></summary>
+<summary><b>How do I update the app?</b></summary>
 
-Yangi versiya chiqqanda GitHub Releases sahifasidan yuklab oling va qayta o'rnating.
+Download the new version from the [Releases page](../../releases) and reinstall.
+</details>
+
+<details>
+<summary><b>Back button not working properly?</b></summary>
+
+The app sends Escape key to YouTube TV for navigation. If you're on the home page, press Back twice to exit. Inside videos, just press Back once to exit the player.
 </details>
 
 ---
 
-## Rivojlantiruvchilar uchun
+## For Developers
 
-### Build qilish
+### Building from Source
 
 ```bash
-# Clone
+# Clone repository
 git clone https://github.com/XushnazarovFaxriddin/Youtube-Lite-for-Android-TV.git
 cd Youtube-Lite-for-Android-TV
 
 # Build debug APK
 ./gradlew assembleDebug
 
-# APK manzili
+# APK location
 # app/build/outputs/apk/debug/app-debug.apk
 ```
 
-### Loyiha tuzilishi
+### Project Structure
 
 ```
 app/src/main/
 ├── java/com/example/youtubetvlite/
-│   └── MainActivity.kt          # Asosiy Activity
+│   └── MainActivity.kt          # Main Activity
 ├── assets/
 │   ├── tv_bridge.js             # Android-JS bridge
-│   └── inject_extension.js       # YouTube optimizatsiya
+│   └── inject_extension.js      # YouTube optimization
 ├── res/
-│   ├── layout/activity_main.xml  # UI layout
-│   ├── drawable/                 # Ikonkalar
-│   └── values/                   # Strings, styles
-└── AndroidManifest.xml           # App konfiguratsiya
+│   ├── layout/activity_main.xml # UI layout
+│   ├── drawable/                # Icons
+│   └── values/                  # Strings, styles
+└── AndroidManifest.xml          # App configuration
 ```
 
+### CI/CD
+
+Every push to main branch automatically:
+1. Builds the APK
+2. Creates/updates a GitHub Release
+3. Attaches the APK for download
+
 ---
 
-## Litsenziya
+## License
 
-MIT License - Bepul foydalaning, o'zgartiring va tarqating.
+MIT License - Free to use, modify, and distribute.
 
 ---
 
-## Bog'lanish
+## Contributing
 
-- **Muammo yoki taklif:** [GitHub Issues](../../issues)
-- **Pull Request:** Contributions welcome!
+- **Issues & Suggestions:** [GitHub Issues](../../issues)
+- **Pull Requests:** Contributions welcome!
 
 ---
 
 <div align="center">
 
-**Agar loyiha yoqgan bo'lsa, yulduzcha bosing!**
+**If you find this project useful, please give it a star!**
+
+[![Star](https://img.shields.io/github/stars/XushnazarovFaxriddin/Youtube-Lite-for-Android-TV?style=social)](../../stargazers)
 
 Made with ❤️ for Android TV users
 
