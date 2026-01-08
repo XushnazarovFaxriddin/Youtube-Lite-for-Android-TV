@@ -27,9 +27,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var menuOverlay: LinearLayout
 
     private var lastBackPressMs: Long = 0
+    private var backPressCount: Int = 0
     private var remoteAssistEnabled: Boolean = false
 
     private val prefs by lazy { getSharedPreferences("yt_tv_lite", MODE_PRIVATE) }
+
+    // Handler for delayed back press reset
+    private val backPressHandler = android.os.Handler(android.os.Looper.getMainLooper())
 
     // TV User-Agent (Sony BRAVIA 8K) - mimics a real TV device for YouTube TV interface
     private val tvUserAgent: String =
@@ -67,6 +71,11 @@ class MainActivity : AppCompatActivity() {
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         if (hasFocus) hideSystemUi()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        backPressHandler.removeCallbacksAndMessages(null)
     }
 
     private fun hideSystemUi() {
@@ -192,18 +201,61 @@ class MainActivity : AppCompatActivity() {
         webView.loadUrl("https://www.youtube.com/tv")
     }
 
+    /**
+     * Handle back navigation for YouTube TV.
+     * YouTube TV is a Single Page Application (SPA) - it handles its own navigation via Escape key.
+     * We should NOT use webView.goBack() as it breaks YouTube's internal navigation.
+     * Instead, we send Escape to YouTube and use triple-back-press to exit the app.
+     */
+    private fun handleBack() {
+        val now = SystemClock.elapsedRealtime()
+
+        // Reset back press count if more than 2 seconds since last press
+        if (now - lastBackPressMs > 2000) {
+            backPressCount = 0
+        }
+
+        backPressCount++
+        lastBackPressMs = now
+
+        // Always send Escape to YouTube TV first - it handles back navigation internally
+        sendKeyToWeb("Escape")
+
+        // Check current URL to determine exit behavior
+        val currentUrl = webView.url ?: ""
+        val isOnHomePage = currentUrl == "https://www.youtube.com/tv" ||
+                           currentUrl == "https://www.youtube.com/tv#/" ||
+                           currentUrl.matches(Regex("https://www\\.youtube\\.com/tv/?#?/?$"))
+
+        if (isOnHomePage) {
+            // On home page - double back to exit
+            if (backPressCount >= 2) {
+                finish()
+            } else {
+                Toast.makeText(this, "Chiqish uchun BACK ni yana bosing", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            // Inside YouTube (video, search, etc.) - triple back to exit
+            // First two presses let YouTube handle navigation, third press exits
+            if (backPressCount >= 3) {
+                Toast.makeText(this, "Chiqish uchun BACK ni yana bosing", Toast.LENGTH_SHORT).show()
+                backPressCount = 0 // Reset to require confirmation
+            }
+        }
+
+        // Reset count after delay
+        backPressHandler.removeCallbacksAndMessages(null)
+        backPressHandler.postDelayed({ backPressCount = 0 }, 2500)
+    }
+
+    /**
+     * Legacy goBack for menu button - uses WebView history
+     */
     private fun goBack() {
         if (webView.canGoBack()) {
             webView.goBack()
-            return
-        }
-
-        val now = SystemClock.elapsedRealtime()
-        if (now - lastBackPressMs < 1500) {
-            finish()
         } else {
-            lastBackPressMs = now
-            Toast.makeText(this, "Press BACK again to exit", Toast.LENGTH_SHORT).show()
+            handleBack()
         }
     }
 
@@ -276,9 +328,9 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 KeyEvent.KEYCODE_BACK -> {
-                    // Try to close in-page overlays first.
-                    sendKeyToWeb("Escape")
-                    goBack()
+                    // Let YouTube TV handle back navigation via Escape key
+                    // YouTube TV is a SPA and manages its own navigation
+                    handleBack()
                     return true
                 }
 
