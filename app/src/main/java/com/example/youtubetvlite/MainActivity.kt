@@ -31,12 +31,13 @@ class MainActivity : AppCompatActivity() {
 
     private val prefs by lazy { getSharedPreferences("yt_tv_lite", MODE_PRIVATE) }
 
+    // TV User-Agent (Sony BRAVIA 8K) - mimics a real TV device for YouTube TV interface
+    private val tvUserAgent: String =
+        "Mozilla/5.0 (Linux; Andr0id 9; BRAVIA 8K UR2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36 OPR/46.0.2207.0 OMI/4.21.0.273.DIA6.149 Model/Sony-BRAVIA-8K-UR2"
+
+    // Desktop User-Agent as fallback
     private val desktopUserAgent: String =
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-
-    // Useful if you want to try a mobile UA for troubleshooting.
-    private val mobileUserAgent: String =
-        "Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -162,8 +163,9 @@ class MainActivity : AppCompatActivity() {
         s.displayZoomControls = false
         s.setSupportZoom(false)
 
-        val useDesktopUa = prefs.getBoolean("use_desktop_ua", true)
-        s.userAgentString = if (useDesktopUa) desktopUserAgent else mobileUserAgent
+        // Default to TV User-Agent for best YouTube TV experience
+        val useTvUa = prefs.getBoolean("use_tv_ua", true)
+        s.userAgentString = if (useTvUa) tvUserAgent else desktopUserAgent
 
         webView.isFocusable = true
         webView.isFocusableInTouchMode = true
@@ -214,13 +216,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun toggleUserAgentAndReload() {
-        val current = prefs.getBoolean("use_desktop_ua", true)
-        prefs.edit().putBoolean("use_desktop_ua", !current).apply()
+        val current = prefs.getBoolean("use_tv_ua", true)
+        prefs.edit().putBoolean("use_tv_ua", !current).apply()
 
-        webView.settings.userAgentString = if (!current) desktopUserAgent else mobileUserAgent
+        webView.settings.userAgentString = if (!current) tvUserAgent else desktopUserAgent
         Toast.makeText(
             this,
-            "User-Agent: " + (if (!current) "Desktop" else "Mobile"),
+            "User-Agent: " + (if (!current) "TV (Sony BRAVIA)" else "Desktop"),
             Toast.LENGTH_SHORT
         ).show()
         webView.reload()
